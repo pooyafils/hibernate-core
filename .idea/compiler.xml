@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="hibernate_spring_project" />
+        <module name="hibernate-core" />
       </profile>
     </annotationProcessing>
   </component>
