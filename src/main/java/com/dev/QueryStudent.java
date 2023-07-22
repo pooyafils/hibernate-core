@@ -18,7 +18,7 @@ public class QueryStudent {
             session.beginTransaction();
           //  List<Student> findStudent = session.createQuery("from Student").list();
         //    List<Student> findStudent = session.createQuery("from  Student s where s.lastName='marker'").list();
-            List<Student> findStudent = session.createQuery("from Student s where s.lastName='marker' and s.firstName='paul'").list();
+            List<Student> findStudent = session.createQuery("from Student s where s.lastName='marker' and s.firstNamegt='paul'").list();
             for (Student student : findStudent) {
 
                 System.out.println(student);

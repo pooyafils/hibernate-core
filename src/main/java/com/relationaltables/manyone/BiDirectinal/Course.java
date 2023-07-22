@@ -1,6 +1,4 @@
-package com.relationaltables.manyone;
-
-import org.hibernate.engine.internal.Cascade;
+package com.relationaltables.manyone.BiDirectinal;
 
 import javax.persistence.*;
 

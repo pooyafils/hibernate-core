@@ -1,10 +1,10 @@
-package com.relationaltables.manyone;
+package com.relationaltables.manyone.BiDirectinal;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class GetInstructorCourseDemo {
+public class CreateInstructorCourseDemo {
     public static void main(String[] args) {
         SessionFactory factory=new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -15,17 +15,25 @@ public class GetInstructorCourseDemo {
 
         Session session=factory.getCurrentSession();
         try {
-            System.out.println("getting instructor ");
             session.beginTransaction();
-            Instructor instructor=session.get(Instructor.class,7);
-            System.out.println(instructor.getCourses());
-            System.out.println(instructor.getInstructorDetail());
+
+            Instructor instructor=new Instructor("alexo","smitho","@googlesmitho.com");
+            InstructorDetail instructorDetail=new InstructorDetail("smitho youtube","youtube");
+            Course course=new Course("java",instructor);
+
+            instructor.add(course);
+            instructor.setInstructorDetail(instructorDetail);
+
+            session.save(instructor);
+            System.out.println("instructor has been saved !"+instructor.getId());
+
+
             session.getTransaction().commit();
             System.out.println("Done !");
-        }
-        finally {
-            factory.close();
-            session.close();
-        }
     }
+        finally {
+            session.close();
+            factory.close();
+        }
+        }
 }

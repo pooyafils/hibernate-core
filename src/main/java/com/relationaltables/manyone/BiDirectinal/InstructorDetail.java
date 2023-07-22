@@ -1,4 +1,4 @@
-package com.relationaltables.manyone;
+package com.relationaltables.manyone.BiDirectinal;
 
 import javax.persistence.*;
 

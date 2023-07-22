@@ -1,4 +1,4 @@
-package com.relationaltables.manyone;
+package com.relationaltables.manyone.UniDirectinal;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class Instructor {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail instructorDetail;
-@OneToMany(mappedBy = "instructor",cascade = CascadeType.ALL)
+@OneToMany(mappedBy = "instructor",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Course> courses;
 
     public Instructor() {
