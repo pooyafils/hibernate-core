@@ -1,4 +1,4 @@
-package com.relationaltables.manyone.UniDirectinal;
+package com.relationaltables.manymany;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package com.relationaltables.manyone.UniDirectinal;
+package com.relationaltables.manymany;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -17,6 +17,9 @@ public class Course {
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id")
     private List<Review> reviewList;
+    @ManyToMany(fetch = FetchType.LAZY,cascade ={CascadeType.DETACH,CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH})
+    @JoinTable(name = "course_student",joinColumns = @JoinColumn(name = "course_id"),inverseJoinColumns = @JoinColumn(name = "student_id"))
+    private List<Student> students;
     public Course() {
     }
 
@@ -24,6 +27,10 @@ public class Course {
 
         this.title = title;
         this.instructor = instructor;
+    }
+
+    public Course(String title) {
+        this.title = title;
     }
 
     public int getId() {
@@ -54,6 +61,14 @@ public class Course {
         return reviewList;
     }
 
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
     public void setReviewList(List<Review> reviewList) {
         this.reviewList = reviewList;
     }
@@ -62,6 +77,12 @@ public class Course {
             reviewList=new ArrayList<>();
         }
         reviewList.add(reviewss);
+    }
+    public void addStudent(Student student){
+        if(students==null){
+            students=new ArrayList<>();
+        }
+        students.add(student);
     }
 
     @Override

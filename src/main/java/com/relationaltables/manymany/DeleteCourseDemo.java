@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class AddCourseForStudent {
+public class DeleteCourseDemo {
     public static void main(String[] args) {
 
         // create session factory
@@ -21,23 +21,16 @@ public class AddCourseForStudent {
         Session session = factory.getCurrentSession();
 
         try {
+
             // start a transaction
             session.beginTransaction();
-            int studentId=5;
-            Student student=session.get(Student.class,5);
-            Course course=new Course("ios");
-            Course course1=new Course("spring boot");
-            course.addStudent(student);
-            course1.addStudent(student);
-            session.save(course);
-            session.save(course1);
-
+            Course course=session.get(Course.class,15);
+            session.delete(course);
 
             session.getTransaction().commit();
-        }
-        finally {
+        } finally {
             factory.close();
             session.close();
         }
-        }
+    }
 }

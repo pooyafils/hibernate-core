@@ -1,6 +1,7 @@
-package com.dev;
+package com.relationaltables.manymany;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "student")
@@ -14,7 +15,9 @@ public class Student {
     private String lastName;
     @Column(name = "email")
     private String email;
-
+    @ManyToMany(fetch = FetchType.LAZY,cascade ={CascadeType.DETACH,CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH})
+    @JoinTable(name = "course_student",joinColumns = @JoinColumn(name = "student_id"),inverseJoinColumns = @JoinColumn(name = "course_id"))
+    private List<Course> courseList;
     public Student() {
     }
 
@@ -55,6 +58,14 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Course> getCourseList() {
+        return courseList;
+    }
+
+    public void setCourseList(List<Course> courseList) {
+        this.courseList = courseList;
     }
 
     @Override
